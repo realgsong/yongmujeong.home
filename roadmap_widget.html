@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>집궁까지의 여정 로드맵</title>
+  <!-- Google Fonts: Noto Serif KR for title/header, Noto Sans KR for body -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary-color: #1b4332; /* Forest Green */
+      --accent-color: #c79a3b;  /* Warm Gold */
+      --text-color: #2b2d42;    /* Dark Charcoal */
+      --bg-color: #fdfbf7;      /* Off-white */
+      --border-color: #e2e8f0;
+      --text-muted: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background-color: transparent;
+      color: var(--text-color);
+      padding: 20px 10px;
+    }
+
+    .timeline-container {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .timeline-title {
+      font-family: 'Noto Serif KR', serif;
+      text-align: center;
+      color: var(--primary-color);
+      font-size: 1.8rem;
+      margin-bottom: 40px;
+      font-weight: 700;
+      position: relative;
+      padding-bottom: 12px;
+    }
+
+    .timeline-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background-color: var(--accent-color);
+    }
+
+    /* Vertical line */
+    .timeline-line {
+      position: absolute;
+      left: 50%;
+      top: 100px;
+      bottom: 40px;
+      width: 4px;
+      background: linear-gradient(to bottom, var(--primary-color) 0%, var(--accent-color) 100%);
+      transform: translateX(-50%);
+      z-index: 1;
+    }
+
+    /* Timeline item */
+    .timeline-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 50px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .timeline-item:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    /* Timeline content box */
+    .timeline-content {
+      width: 44%;
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    .timeline-content:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 15px -3px rgba(27, 67, 50, 0.1), 0 4px 6px -2px rgba(27, 67, 50, 0.05);
+      border-color: var(--accent-color);
+    }
+
+    /* Timeline badge (number) */
+    .timeline-badge {
+      width: 50px;
+      height: 50px;
+      background-color: var(--primary-color);
+      border: 4px solid var(--bg-color);
+      color: var(--accent-color);
+      font-weight: 700;
+      font-size: 1.3rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      z-index: 3;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .timeline-content:hover ~ .timeline-badge,
+    .timeline-item:hover .timeline-badge {
+      background-color: var(--accent-color);
+      color: var(--primary-color);
+      transform: scale(1.1);
+    }
+
+    /* Spacer for alignment */
+    .timeline-spacer {
+      width: 44%;
+    }
+
+    /* Card Details */
+    .step-number {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent-color);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .step-title {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 1.25rem;
+      color: var(--primary-color);
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .step-desc {
+      font-size: 0.92rem;
+      color: var(--text-color);
+      line-height: 1.6;
+      word-break: keep-all;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .timeline-line {
+        left: 30px;
+        top: 80px;
+      }
+
+      .timeline-item {
+        flex-direction: row !important;
+        justify-content: flex-start;
+        margin-bottom: 40px;
+      }
+
+      .timeline-content {
+        width: calc(100% - 60px);
+        margin-left: 20px;
+      }
+
+      .timeline-badge {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+        position: absolute;
+        left: 10px;
+      }
+
+      .timeline-spacer {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="timeline-container">
+    <h2 class="timeline-title">집궁(執弓)까지의 여정</h2>
+    
+    <div class="timeline-line"></div>
+
+    <!-- Step 1 -->
+    <div class="timeline-item">
+      <div class="timeline-content">
+        <div class="step-number">Step 01</div>
+        <h3 class="step-title">빈 활 당기기</h3>
+        <p class="step-desc">활을 처음 배울 때 시작하는 기초 단계입니다. 활터에 구비된 습사용 빈 활을 당기며 활을 버티는 근력(궁력)을 기릅니다.</p>
+      </div>
+      <div class="timeline-badge">1</div>
+      <div class="timeline-spacer"></div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="timeline-item">
+      <div class="timeline-spacer"></div>
+      <div class="timeline-badge">2</div>
+      <div class="timeline-content">
+        <div class="step-number">Step 02</div>
+        <h3 class="step-title">주살질 연습</h3>
+        <p class="step-desc">궁력이 다져지면 줄에 매달린 화살을 쏘는 주살질 훈련을 시작합니다. 사범님의 1:1 밀착 지도를 통해 올바른 사법 자세를 확립합니다.</p>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="timeline-item">
+      <div class="timeline-content">
+        <div class="step-number">Step 03</div>
+        <h3 class="step-title">사대 오름식</h3>
+        <p class="step-desc">주살질 연습을 충분히 거친 후, 사대에 정식으로 올라 과녁을 향해 첫 활을 내딛는 성스러운 사대오름식을 거행합니다.</p>
+      </div>
+      <div class="timeline-badge">3</div>
+      <div class="timeline-spacer"></div>
+    </div>
+
+    <!-- Step 4 -->
+    <div class="timeline-item">
+      <div class="timeline-spacer"></div>
+      <div class="timeline-badge">4</div>
+      <div class="timeline-content">
+        <div class="step-number">Step 04</div>
+        <h3 class="step-title">개인 장비 주문</h3>
+        <p class="step-desc">자신의 궁력과 팔 길이에 꼭 맞는 개인 활(궁)과 화살(시)을 주문 제작 및 마련하여 궁사로서의 준비를 마칩니다.</p>
+      </div>
+    </div>
+
+    <!-- Step 5 -->
+    <div class="timeline-item">
+      <div class="timeline-content">
+        <div class="step-number">Step 05</div>
+        <h3 class="step-title">집궁례 (執弓禮)</h3>
+        <p class="step-desc">정식으로 활터의 정궁사(正弓士)가 되었음을 알리는 전통 집궁례를 마침으로써, 언제든지 자유롭게 활을 낼 수 있는 권한을 얻습니다.</p>
+      </div>
+      <div class="timeline-badge">5</div>
+      <div class="timeline-spacer"></div>
+    </div>
+
+  </div>
+
+</body>
+</html>

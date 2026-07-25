@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>전통 국궁장 용무정 (龍武亭)</title>
+  
+  <!-- Google Fonts: Noto Serif KR for traditional headings, Noto Sans KR for clean body -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@500;700;900&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Reset & CSS Variables */
+    :root {
+      --primary: #1b4332;       /* Deep Forest Green */
+      --primary-light: #2d6a4f; /* Lighter Forest Green */
+      --accent: #c79a3b;        /* Warm Gold */
+      --accent-light: #d4af37;  /* Bright Gold */
+      --bg-dark: #2b2d42;       /* Charcoal Black */
+      --bg-light: #fdfbf7;      /* Traditional Paper Off-white */
+      --card-bg: #ffffff;
+      --text-main: #2b2d42;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --font-serif: 'Noto Serif KR', serif;
+      --font-sans: 'Noto Sans KR', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-light);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    /* Common Layout & Components */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 2.2rem;
+      color: var(--primary);
+      text-align: center;
+      margin-bottom: 50px;
+      font-weight: 700;
+      position: relative;
+      padding-bottom: 15px;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background-color: var(--accent);
+    }
+
+    /* Navigation Bar */
+    header {
+      background-color: rgba(27, 67, 50, 0.95);
+      backdrop-filter: blur(8px);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      border-bottom: 2px solid var(--accent);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 80px;
+    }
+
+    .logo {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: #ffffff;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255, 255, 255, 0.85);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+      padding: 5px 0;
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      background: linear-gradient(rgba(27, 67, 50, 0.4), rgba(27, 67, 50, 0.8)), url('assets/drone_view.jpg') no-repeat center center/cover;
+      display: flex;
+      align-items: center;
+      color: #ffffff;
+      text-align: center;
+      padding-top: 80px; /* nav header height */
+    }
+
+    .hero-content {
+      width: 100%;
+      animation: fadeIn 1s ease-out;
+    }
+
+    .hero-subtitle {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      color: var(--accent);
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+      font-weight: 500;
+    }
+
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: 3.5rem;
+      font-weight: 900;
+      margin-bottom: 30px;
+      line-height: 1.2;
+      text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-desc {
+      font-size: 1.15rem;
+      max-width: 700px;
+      margin: 0 auto 40px auto;
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 300;
+      word-break: keep-all;
+    }
+
+    .hero-btns {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .btn {
+      padding: 14px 32px;
+      border-radius: 6px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background-color: var(--accent);
+      color: var(--primary);
+      border: 1px solid var(--accent);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-light);
+      border-color: var(--accent-light);
+      box-shadow: 0 4px 15px rgba(199, 154, 59, 0.4);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: #ffffff;
+      border: 2px solid #ffffff;
+    }
+
+    .btn-secondary:hover {
+      background-color: #ffffff;
+      color: var(--primary);
+    }
+
+    /* Intro / About Section */
+    .section-about {
+      padding: 100px 0;
+      background-color: var(--bg-light);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about-text {
+      animation: slideInLeft 1s ease-out;
+    }
+
+    .about-tag {
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .about-heading {
+      font-family: var(--font-serif);
+      font-size: 2.2rem;
+      color: var(--primary);
+      margin-bottom: 25px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .about-p {
+      color: var(--text-main);
+      font-size: 1.05rem;
+      margin-bottom: 20px;
+      line-height: 1.8;
+      word-break: keep-all;
+    }
+
+    .about-image {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      aspect-ratio: 4/3;
+    }
+
+    .about-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Achievement / Score section */
+    .section-stats {
+      background-color: var(--primary);
+      color: #ffffff;
+      padding: 80px 0;
+      position: relative;
+      border-top: 3px solid var(--accent);
+      border-bottom: 3px solid var(--accent);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: var(--font-serif);
+      font-size: 3rem;
+      color: var(--accent);
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+
+    .stat-label {
+      font-size: 1.1rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+    }
+
+    /* Blog / Newsletter Section */
+    .section-news {
+      padding: 100px 0;
+      background-color: #ffffff;
+    }
+
+    /* Dynamic Grid Layout */
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    /* Post Card */
+    .post-card {
+      background: #ffffff;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .post-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 20px rgba(27, 67, 50, 0.12);
+      border-color: rgba(27, 67, 50, 0.2);
+    }
+
+    .post-thumbnail-wrapper {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%; /* 16:9 Aspect Ratio */
+      background-color: var(--primary);
+      overflow: hidden;
+    }
+
+    .post-thumbnail {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .post-card:hover .post-thumbnail {
+      transform: scale(1.05);
+    }
+
+    .post-content {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .post-date {
+      font-size: 0.85rem;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .post-title {
+      font-family: var(--font-sans);
+      font-size: 1.15rem;
+      font-weight: 700;
+      line-height: 1.4;
+      margin-bottom: 12px;
+      color: var(--primary);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      height: 3.2rem;
+    }
+
+    .post-snippet {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 20px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      height: 4.4rem;
+    }
+
+    .post-footer {
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 15px;
+      border-top: 1px solid var(--border);
+    }
+
+    .read-more {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .post-author {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Timeline Roadmap Section */
+    .section-roadmap {
+      padding: 100px 0;
+      background-color: var(--bg-light);
+    }
+
+    .timeline-container {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .timeline-line {
+      position: absolute;
+      left: 50%;
+      top: 50px;
+      bottom: 50px;
+      width: 4px;
+      background: linear-gradient(to bottom, var(--primary) 0%, var(--accent) 100%);
+      transform: translateX(-50%);
+      z-index: 1;
+    }
+
+    .timeline-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 60px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .timeline-item:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    .timeline-content {
+      width: 44%;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.02);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    .timeline-content:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 15px 25px rgba(27, 67, 50, 0.08);
+      border-color: var(--accent);
+    }
+
+    .timeline-badge {
+      width: 50px;
+      height: 50px;
+      background-color: var(--primary);
+      border: 4px solid var(--bg-light);
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 1.3rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      z-index: 3;
+      transition: all 0.3s ease;
+    }
+
+    .timeline-item:hover .timeline-badge {
+      background-color: var(--accent);
+      color: var(--primary);
+      transform: scale(1.1);
+    }
+
+    .timeline-spacer {
+      width: 44%;
+    }
+
+    .step-number {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    .step-title {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      color: var(--primary);
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .step-desc {
+      font-size: 0.95rem;
+      color: var(--text-main);
+      line-height: 1.6;
+      word-break: keep-all;
+    }
+
+    /* Join / Pricing Section */
+    .section-join {
+      padding: 100px 0;
+      background-color: #ffffff;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+
+    .pricing-card {
+      background: var(--bg-light);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 40px 30px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--accent);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+    }
+
+    .pricing-card.featured {
+      border: 2px solid var(--accent);
+      background-color: #ffffff;
+      box-shadow: 0 10px 20px rgba(27, 67, 50, 0.05);
+    }
+
+    .pricing-badge {
+      position: absolute;
+      top: 20px;
+      right: -35px;
+      background-color: var(--accent);
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.75rem;
+      padding: 5px 40px;
+      transform: rotate(45deg);
+    }
+
+    .pricing-name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+
+    .pricing-price {
+      font-family: var(--font-serif);
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--text-main);
+      margin-bottom: 10px;
+    }
+
+    .pricing-price span {
+      font-size: 1rem;
+      color: var(--text-muted);
+      font-weight: 400;
+      font-family: var(--font-sans);
+    }
+
+    .pricing-details {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 30px;
+    }
+
+    .pricing-features {
+      list-style: none;
+      padding-top: 25px;
+      border-top: 1px solid var(--border);
+      text-align: left;
+      display: inline-block;
+      margin: 0 auto;
+    }
+
+    .pricing-features li {
+      font-size: 0.92rem;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .pricing-features li::before {
+      content: '✓';
+      color: var(--accent);
+      font-weight: bold;
+    }
+
+    /* Benefits Section */
+    .benefits-container {
+      background: var(--bg-light);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      padding: 40px;
+      margin-top: 50px;
+    }
+
+    .benefits-title {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      color: var(--primary);
+      margin-bottom: 25px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .benefit-item {
+      display: flex;
+      gap: 15px;
+    }
+
+    .benefit-icon {
+      font-size: 1.8rem;
+      color: var(--accent);
+    }
+
+    .benefit-text h4 {
+      font-size: 1.05rem;
+      color: var(--primary);
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+
+    .benefit-text p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Footer & Map Section */
+    footer {
+      background-color: var(--bg-dark);
+      color: rgba(255, 255, 255, 0.8);
+      padding: 80px 0 30px 0;
+      border-top: 4px solid var(--accent);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 50px;
+      margin-bottom: 50px;
+    }
+
+    .footer-about h3 {
+      font-family: var(--font-serif);
+      color: #ffffff;
+      font-size: 1.6rem;
+      margin-bottom: 20px;
+    }
+
+    .footer-about p {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      margin-bottom: 20px;
+      word-break: keep-all;
+    }
+
+    .footer-contact h4, .footer-links h4 {
+      color: #ffffff;
+      font-size: 1.15rem;
+      margin-bottom: 20px;
+      font-weight: 700;
+      position: relative;
+      padding-bottom: 8px;
+    }
+
+    .footer-contact h4::after, .footer-links h4::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 30px;
+      height: 2px;
+      background-color: var(--accent);
+    }
+
+    .footer-contact ul, .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-contact li {
+      font-size: 0.92rem;
+      margin-bottom: 12px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      font-size: 0.92rem;
+      transition: color 0.3s ease;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 30px;
+      text-align: center;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    /* Keyframe Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-40px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 992px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .pricing-grid {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        margin: 0 auto 40px auto;
+      }
+      .benefits-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2.5rem;
+      }
+      .nav-links {
+        display: none; /* In a real product we'd use a mobile hamburger menu */
+      }
+      .timeline-line {
+        left: 30px;
+        top: 80px;
+      }
+      .timeline-item {
+        flex-direction: row !important;
+        justify-content: flex-start;
+        margin-bottom: 40px;
+      }
+      .timeline-content {
+        width: calc(100% - 60px);
+        margin-left: 20px;
+      }
+      .timeline-badge {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+        position: absolute;
+        left: 10px;
+      }
+      .timeline-spacer {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <div class="container nav-container">
+      <a href="#" class="logo">龍武亭 <span>용무정</span></a>
+      <ul class="nav-links">
+        <li><a href="#about">용무정 소개</a></li>
+        <li><a href="#news">소식지</a></li>
+        <li><a href="#roadmap">집궁 여정</a></li>
+        <li><a href="#join">회원가입 안내</a></li>
+        <li><a href="#contact">오시는 길</a></li>
+        <li><a href="https://l2zox.channel.io/home" target="_blank" style="color: var(--accent); font-weight: 700;">온라인 문의</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero-content">
+      <p class="hero-subtitle">1986년 창립, 과녁을 향한 일념</p>
+      <h1 class="hero-title">용인 용무정 (龍武亭)</h1>
+      <p class="hero-desc">경기도 용인의 수려한 자연 속에 자리한 용무정은 역사와 전통 무예의 정신을 계승하는 정식 국궁장입니다. 예의와 신의를 바탕으로 몸과 마음을 닦는 궁도의 길로 여러분을 초대합니다.</p>
+      <div class="hero-btns">
+        <a href="https://l2zox.channel.io/home" target="_blank" class="btn btn-primary">가입 및 입회 문의</a>
+        <a href="#join" class="btn btn-secondary">회원가입 및 회비 안내</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="section-about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text">
+          <span class="about-tag">About Us</span>
+          <h2 class="about-heading">고대 무예 국궁의 보급과 전통 계승</h2>
+          <p class="about-p">저희 용무정은 고대로부터 전해져 내려오는 민족 고유의 무예인 궁도(國弓)를 시민들에게 널리 보급하고, 후손들에게 굳건히 계승시키며 우리나라 궁도 발전에 기여하기 위해 운영되고 있습니다.</p>
+          <p class="about-p">용무정은 단순한 체육시설을 넘어 정관에 규정된 투명하고 정당한 원칙을 준수하며 사원들의 화합과 존중을 가장 가치 있게 생각합니다. 매년 열리는 정기 총회와 매월 월례 회의를 통해 회원님들의 목소리를 적극 반영합니다.</p>
+          <a href="https://docs.google.com/spreadsheets/d/1mAr7FwjHldSG_sdN3JKdPAbnzNySnXebUL6uYYfsCj0/edit?gid=578486720#gid=578486720" target="_blank" class="btn btn-primary" style="display: inline-block; margin-top: 15px;">용무정 연혁 보기</a>
+        </div>
+        <div class="about-image">
+          <img class="about-img" src="assets/traditional_rite_1.jpg" alt="용무정 과녁제 의식 사진">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="section-stats">
+    <div class="container stats-grid">
+      <div>
+        <div class="stat-number">100%</div>
+        <div class="stat-label">정관 원칙 준수</div>
+      </div>
+      <div>
+        <div class="stat-number">145m</div>
+        <div class="stat-label">정식 사거리 규격</div>
+      </div>
+      <div>
+        <div class="stat-number">다수</div>
+        <div class="stat-label">전국대회 우승 기록</div>
+      </div>
+      <div>
+        <div class="stat-number">1:1</div>
+        <div class="stat-label">초보자 밀착 지도</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blogger Newsletter Section -->
+  <section id="news" class="section-news">
+    <div class="container">
+      <h2 class="section-title">용무정 소식지</h2>
+      <p style="text-align: center; color: var(--text-muted); margin-top: -30px; margin-bottom: 40px;">공식 블로그의 실시간 소식을 가장 빠르게 전해드립니다.</p>
+      
+      <!-- Live Blogger Feed -->
+      <div id="posts-grid" class="posts-grid">
+        <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--primary);">
+          <div style="width: 40px; height: 40px; border: 4px solid rgba(27,67,50,0.1); border-left-color: var(--primary); border-radius: 50%; display: inline-block; animation: spin 1s linear infinite; margin-bottom: 10px;"></div>
+          <div>소식을 불러오는 중입니다...</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Roadmap Timeline Section -->
+  <section id="roadmap" class="section-roadmap">
+    <div class="container">
+      <h2 class="section-title">집궁(執弓)까지의 여정</h2>
+      <p style="text-align: center; color: var(--text-muted); margin-top: -30px; margin-bottom: 50px;">처음 활을 배우는 분들이 정식 궁사가 되기까지의 5단계 체계적인 교육 프로그램입니다.</p>
+
+      <div class="timeline-container">
+        <div class="timeline-line"></div>
+
+        <!-- Step 1 -->
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="step-number">Step 01</div>
+            <h3 class="step-title">빈 활 당기기</h3>
+            <p class="step-desc">기초 궁력을 쌓기 위해 활터에 구비된 습사용 활을 이용하여 활 시위를 버티고 당기는 자세 근육을 단련합니다.</p>
+          </div>
+          <div class="timeline-badge">1</div>
+          <div class="timeline-spacer"></div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="timeline-item">
+          <div class="timeline-spacer"></div>
+          <div class="timeline-badge">2</div>
+          <div class="timeline-content">
+            <div class="step-number">Step 02</div>
+            <h3 class="step-title">주살질 연습</h3>
+            <p class="step-desc">궁력이 올라오면 화살이 날아가지 않도록 매달아놓은 줄 과녁에 활을 쏘는 주살질을 연습합니다. 사범님이 직접 자세를 꼼꼼하게 교정합니다.</p>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="step-number">Step 03</div>
+            <h3 class="step-title">사대 오름식</h3>
+            <p class="step-desc">일정한 자세 안정이 유지되면 비로소 진짜 과녁을 겨냥해 첫 화살을 발시하는 성스럽고 의미 깊은 사대 오름 행사를 치릅니다.</p>
+          </div>
+          <div class="timeline-badge">3</div>
+          <div class="timeline-spacer"></div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="timeline-item">
+          <div class="timeline-spacer"></div>
+          <div class="timeline-badge">4</div>
+          <div class="timeline-content">
+            <div class="step-number">Step 04</div>
+            <h3 class="step-title">개인 장비 주문</h3>
+            <p class="step-desc">자신의 사거리, 몸 상태, 팔 리치에 맞춤 설계된 고유한 전통 활(궁)과 대나무 화살(시) 세트를 엄선 주문 제작합니다.</p>
+          </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="step-number">Step 05</div>
+            <h3 class="step-title">전통 집궁례 (執弓禮)</h3>
+            <p class="step-desc">정식 회원으로서 온전한 일원의 권리를 득하고 활터 예절을 실천하며 평생 동안 함께 활을 낼 수 있는 명예 궁사 자격을 부여받습니다.</p>
+          </div>
+          <div class="timeline-badge">5</div>
+          <div class="timeline-spacer"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Join / Pricing Section -->
+  <section id="join" class="section-join">
+    <div class="container">
+      <h2 class="section-title">회원 가입 및 회비 안내</h2>
+      <p style="text-align: center; color: var(--text-muted); margin-top: -30px; margin-bottom: 50px;">체계적인 국궁 교육 지도와 평생 취미를 위한 최상의 동반자가 되어 드립니다.</p>
+
+      <div class="pricing-grid">
+        <!-- Male Card -->
+        <div class="pricing-card">
+          <div class="pricing-name">성인 남성</div>
+          <div class="pricing-price">50<span>만원</span></div>
+          <div class="pricing-details">입회 시 최초 1회만 납부</div>
+          <ul class="pricing-features">
+            <li>월회비 3만원 별도</li>
+            <li>사내 보관 락커 기본 배정</li>
+            <li>정식 사범 전담 레슨비 포함</li>
+            <li>공용 습사용 활 무료 대여</li>
+          </ul>
+          <a href="https://l2zox.channel.io/home" target="_blank" class="btn btn-primary" style="display: block; margin-top: 25px; text-decoration: none; font-size: 0.95rem; padding: 10px 0;">가입 및 입회 문의하기</a>
+        </div>
+
+        <!-- Female Card -->
+        <div class="pricing-card featured">
+          <div class="pricing-badge">부부 동반 혜택</div>
+          <div class="pricing-name">성인 여성</div>
+          <div class="pricing-price">30<span>만원</span></div>
+          <div class="pricing-details">입회 시 최초 1회만 납부</div>
+          <ul class="pricing-features">
+            <li>월회비 2만원 별도</li>
+            <li><b>부부 동시 가입 시 여성 입회비 전액 면제</b></li>
+            <li>정식 사범 전담 레슨비 포함</li>
+            <li>공용 습사용 활 무료 대여</li>
+          </ul>
+          <a href="https://l2zox.channel.io/home" target="_blank" class="btn btn-primary" style="display: block; margin-top: 25px; text-decoration: none; font-size: 0.95rem; padding: 10px 0;">가입 및 입회 문의하기</a>
+        </div>
+
+        <!-- Student Card -->
+        <div class="pricing-card">
+          <div class="pricing-name">학생 (만19세 미만)</div>
+          <div class="pricing-price">10<span>만원</span></div>
+          <div class="pricing-details">입회 시 최초 1회만 납부</div>
+          <ul class="pricing-features">
+            <li>월회비 1만원 별도</li>
+            <li>주말 주니어 활쏘기 교실 수강</li>
+            <li>정식 사범 전담 레슨비 포함</li>
+            <li>공용 습사용 활 무료 대여</li>
+          </ul>
+          <a href="https://l2zox.channel.io/home" target="_blank" class="btn btn-primary" style="display: block; margin-top: 25px; text-decoration: none; font-size: 0.95rem; padding: 10px 0;">가입 및 입회 문의하기</a>
+        </div>
+      </div>
+
+      <!-- Benefits Section -->
+      <div class="benefits-container">
+        <h3 class="benefits-title">용무정 정회원 혜택</h3>
+        <div class="benefits-grid">
+          <div class="benefit-item">
+            <div class="benefit-icon">🎖️</div>
+            <div class="benefit-text">
+              <h4>초일중 및 입단 성공 축하</h4>
+              <p>첫 적중 시 용무정 공식 고급 궁대를 특별 수여하며, 단증 취득 시 골드 도금 명예 회원 배지를 증정합니다.</p>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-icon">🏹</div>
+            <div class="benefit-text">
+              <h4>초몰기 달성 시 화살통 증정</h4>
+              <p>5시 5중(초몰기) 달성 기록을 기념하여 장인이 한지로 직접 수제 제작한 고품격 전통 화살통(전통)을 선물합니다.</p>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-icon">⛩️</div>
+            <div class="benefit-text">
+              <h4>전국 400여 개 정(亭) 연계</h4>
+              <p>정식 대한궁도협회 공인 사원으로서 타 정 방문 시 언제나 사대에 오를 수 있는 환대 자격을 얻습니다.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="container footer-grid">
+      <div class="footer-about">
+        <h3>龍武亭 용무정</h3>
+        <p>경기도 용인 처인구에 위치한 용무정은 맑은 공기와 조용한 숲속에서 조상의 지혜가 담긴 활쏘기를 익힐 수 있는 정통 활터입니다. 사집행부의 엄격한 원칙 하에 모두가 편안하게 국궁을 수련할 수 있습니다.</p>
+        <p style="font-size: 0.85rem; color: var(--accent);">방문 예약 및 상담문의: 031-335-0992</p>
+      </div>
+      
+      <div class="footer-contact">
+        <h4>연락처 및 위치</h4>
+        <ul>
+          <li>📍 <a href="https://maps.app.goo.gl/FE9J2hhkVDJzdeGf6" target="_blank" style="color: #ffffff; text-decoration: underline; transition: color 0.3s ease;">경기도 용인시 처인구 백옥대로1191번길 114 용무정</a> (우편번호 17043)</li>
+          <li>📞 031-335-0992</li>
+          <li>✉️ yongmujeong.archery@gmail.com</li>
+          <li>🗺️ <a href="https://maps.app.goo.gl/FE9J2hhkVDJzdeGf6" target="_blank" style="color: var(--accent); font-weight: 700; text-decoration: underline;">구글 지도에서 위치 보기</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links">
+        <h4>바로가기</h4>
+        <ul>
+          <li><a href="https://blog.xn--v92bn3si5a.org/" target="_blank">용무정 공식 블로그</a></li>
+          <li><a href="https://maps.app.goo.gl/FE9J2hhkVDJzdeGf6" target="_blank">용무정 구글 지도</a></li>
+          <li><a href="https://www.band.us/band/91226267/album" target="_blank">용무정 네이버 밴드</a></li>
+          <li><a href="https://docs.google.com/spreadsheets/d/1mAr7FwjHldSG_sdN3JKdPAbnzNySnXebUL6uYYfsCj0/edit?gid=578486720#gid=578486720" target="_blank">용무정 연혁 (구글 시트)</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2026 전통 국궁장 용무정. All Rights Reserved. Designed for premium web renovation.</p>
+    </div>
+  </footer>
+
+  <!-- Inline Javascript for dynamic Blogger Fetching (JSONP) -->
+  <script>
+    const blogUrl = 'https://blog.xn--v92bn3si5a.org';
+
+    // Strips HTML and cuts off text
+    function stripHtml(html) {
+      const tempDiv = document.createElement("div");
+      tempDiv.innerHTML = html;
+      return tempDiv.textContent || tempDiv.innerText || "";
+    }
+
+    // Formats ISO published date
+    function formatDate(dateStr) {
+      try {
+        const d = new Date(dateStr);
+        const year = d.getFullYear();
+        const month = String(d.getMonth() + 1).padStart(2, '0');
+        const day = String(d.getDate()).padStart(2, '0');
+        return `${year}.${month}.${day}`;
+      } catch (e) {
+        return dateStr.substring(0, 10).replace(/-/g, '.');
+      }
+    }
+
+    // JSONP callback function
+    window.renderBloggerWidget = function(data) {
+      const postsGrid = document.getElementById('posts-grid');
+      const entries = data.feed.entry || [];
+
+      if (entries.length === 0) {
+        postsGrid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 40px;">등록된 소식지가 없습니다.</div>';
+        return;
+      }
+
+      const limit = Math.min(entries.length, 3); // Display top 3 posts in the main mockup page
+      let htmlContent = '';
+
+      for (let i = 0; i < limit; i++) {
+        const entry = entries[i];
+        const title = entry.title.$t;
+        const publishedDate = formatDate(entry.published.$t);
+        const alternateLink = (entry.link.find(l => l.rel === 'alternate') || {}).href;
+        
+        const rawContent = entry.content ? entry.content.$t : (entry.summary ? entry.summary.$t : "");
+        const cleanSnippet = stripHtml(rawContent).trim().substring(0, 100) + '...';
+        const authorName = entry.author && entry.author[0] ? entry.author[0].name.$t : '용무정';
+
+        let imgUrl = '';
+        if (entry.media$thumbnail) {
+          imgUrl = entry.media$thumbnail.url.replace('/s72-c/', '/s640/');
+        } else {
+          const imgRegex = /<img[^>]+src="([^">]+)"/g;
+          const match = imgRegex.exec(rawContent);
+          if (match && match[1]) {
+            imgUrl = match[1];
+          }
+        }
+
+        htmlContent += `
+          <a class="post-card" href="${alternateLink}" target="_blank">
+            <div class="post-thumbnail-wrapper">
+              ${imgUrl ? 
+                `<img class="post-thumbnail" src="${imgUrl}" alt="${title}">` : 
+                `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);color:rgba(255,255,255,0.15);position:absolute;top:0;left:0;"><div style="width:60px;height:60px;border:6px solid var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;"><div style="width:22px;height:22px;background:var(--accent);border-radius:50%;"></div></div></div>`
+              }
+            </div>
+            <div class="post-content">
+              <div class="post-date">${publishedDate}</div>
+              <h3 class="post-title">${title}</h3>
+              <p class="post-snippet">${cleanSnippet}</p>
+              <div class="post-footer">
+                <span class="post-author">${authorName}</span>
+                <span class="read-more">자세히 보기 →</span>
+              </div>
+            </div>
+          </a>
+        `;
+      }
+
+      postsGrid.innerHTML = htmlContent;
+    }
+
+    function handleScriptError() {
+      const postsGrid = document.getElementById('posts-grid');
+      postsGrid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: #991b1b; padding: 40px; background: #fef2f2; border: 1px solid #fee2e2; border-radius: 12px;">블로그 피드를 실시간으로 불러오는 데 실패했습니다.</div>';
+    }
+
+    // Dynamic script injection to fetch Blogger JSON feed
+    const script = document.createElement('script');
+    script.src = `${blogUrl}/feeds/posts/default?alt=json-in-script&callback=renderBloggerWidget`;
+    script.onerror = handleScriptError;
+    document.body.appendChild(script);
+  </script>
+</body>
+</html>
