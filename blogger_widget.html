@@ -311,17 +311,24 @@
         // Extract author
         const authorName = entry.author && entry.author[0] ? entry.author[0].name.$t : '용무정';
 
+        // Helper to get high-resolution Blogger image URLs
+        function getHighResImgUrl(url) {
+          if (!url) return '';
+          let newUrl = url.replace(/\/s[0-9]+(-[a-zA-Z0-9_-]+)?\//g, '/s640/');
+          newUrl = newUrl.replace(/=[ws][0-9]+(-[a-zA-Z0-9_-]+)*$/gi, '=s640');
+          return newUrl;
+        }
+
         // Extract thumbnail image
         let imgUrl = '';
         if (entry.media$thumbnail) {
-          // Replace s72-c (small thumbnail default) with s640 (high quality larger image)
-          imgUrl = entry.media$thumbnail.url.replace('/s72-c/', '/s640/');
+          imgUrl = getHighResImgUrl(entry.media$thumbnail.url);
         } else {
           // If no media$thumbnail, search content for <img>
           const imgRegex = /<img[^>]+src="([^">]+)"/g;
           const match = imgRegex.exec(rawContent);
           if (match && match[1]) {
-            imgUrl = match[1];
+            imgUrl = getHighResImgUrl(match[1]);
           }
         }
 
